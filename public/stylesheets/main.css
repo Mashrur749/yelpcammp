@@ -13,3 +13,13 @@
 .delete {
     display: inline;
 }
+
+.form{
+    width: 30%; 
+    margin: 25px auto;
+}
+
+.login, .register{
+    width: fit-content;
+    margin: auto;
+}

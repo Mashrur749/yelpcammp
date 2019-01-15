@@ -10,15 +10,15 @@ var express     = require("express"),
     User        = require("./models/user"),
     methodOverride = require("method-override"),
     seedDB      = require("./seeds")
-    
+
 //requiring routes
 var commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
     indexRoutes      = require("./routes/index")
 
 
-mongoose.connect(process.env.DATABASEURL);
-mongoose.connect("mongodb://Mashrur:asdasd123@ds163918.mlab.com:63918/yelpcamp749")
+var DataBase = process.env.DATABASEURL || "mongodb://Mashrur:asdasd123@ds163918.mlab.com:63918/yelpcamp749";
+mongoose.connect(DataBase);
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -49,7 +49,8 @@ app.use("/", indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 
+var PORT = process.env.PORT || 3000;
 
-app.listen(process.env.PORT, process.env.IP, function(){
+app.listen(PORT, process.env.IP, function(){
    console.log("The YelpCamp Server Has Started!");
 });
